@@ -1,0 +1,23 @@
+<div id="mario-chat">
+    <div class="header">
+        <h2>{{ username }} </h2>
+        <span>Online*</span>
+        <span style="margin: auto;"><i *ngIf="isTyping" class="isTyping">typing...</i></span>
+    </div>
+    
+   
+    <div id="chat-window">
+        <div *ngFor="let item of messageArray">
+            <p [class.userMessage] = "item.user == userService.getLoggedInUser().username" [class.secUserMessage]="item.user != userService.getLoggedInUser().username">{{ item.message }}</p>                
+        </div>
+        <!-- <div id="feedback"></div> -->
+    </div>
+    <div class="action">
+        <input (keypress)="typing()" [(ngModel)]="message" name="message" type="text" placeholder="Type something here..." />            
+        <div >
+            <button id="send" (click)="sendMessage()">
+                <i class="material-icons" >send</i></button>    
+         </div>
+    </div>
+    
+</div>
